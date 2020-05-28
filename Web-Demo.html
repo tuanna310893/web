@@ -1,0 +1,353 @@
+
+<!DOCTYPE>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<style type="text/css">
+			.unselect{
+				user-drag: none; 
+				user-select: none;
+				-moz-user-select: none;
+				-webkit-user-drag: none;
+				-webkit-user-select: none;
+				-ms-user-select: none;
+			}
+			.zoom{
+				zoom: 2;
+			    -moz-transform:scale(2);
+			    -moz-transform-origin: 0 0;
+			    -o-transform: scale(2);
+			    -o-transform-origin: 0 0;
+			    -webkit-transform: scale(2);
+			    -webkit-transform-origin: 0 0;
+			}
+			.ni-form{
+				padding: 20px;
+				background-color: #efefef;
+			}
+			.ni-button{
+				background-color: #262524;
+				color : #F6BC25;
+			}
+			.form-group {
+	    		margin-bottom: 10px;
+			}
+			.form-horizontal .control-label{
+				padding: 7px 0 0;
+			}
+			textarea {
+			    resize: none;
+			}
+			.suggestion{
+				position: absolute;
+				border: 1px solid #ccc;
+				width: calc(100% - 30px);
+				border-radius: 0 0 5px 5px;
+				background-color: #fff;
+				overflow: auto;
+				max-height: 300px;
+				z-index: 1;
+				box-shadow: 1px 1px 3px rgba(0,0,0,0.15);				
+			}
+			.hide{
+				opacity: 0;
+				pointer-events: none;
+			}
+			.item{
+				padding: 10px 20px;
+				border-bottom: 1px solid #eee;
+				cursor: pointer;
+				transition: background-color 0.3s ease;
+			}
+			.item:hover{
+				background-color: #efefef;
+			}
+		</style>
+	</head>
+	<body >
+		<div class="container-fluid">			
+			<center><h3>ANLAB Signature</h3></center>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group ">
+					  <div class="input-group">
+						<input type="text" id="search" class="form-control" placeholder="Search for...">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i>&nbsp</button>
+						</span>
+					  </div>
+					  <div class="suggestion hide">
+					  </div>
+					</div>
+
+					<form class="form-horizontal ni-form">
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="full-name">Full name:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="full-name" name="full-name" class="form-control" placeholder="Enter full name" autocomplete="off" target="#ni-full-name"/>
+						  </div>
+						</div>
+
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="job-title">Job title:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="job-title" name="job-title" class="form-control" placeholder="Enter job title" autocomplete="off" target="#ni-job-title"/>
+						  </div>
+						</div>
+
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="mobile">Mobile:</label>
+						  <div class="col-md-8">
+						    <input type="tel" id="mobile" name="mobile" class="form-control" placeholder="Enter mobile" autocomplete="off" target="#ni-mobile"/>
+						  </div>
+						</div>
+
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="email">Email:</label>
+						  <div class="col-md-8">
+						    <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" autocomplete="off" target="#ni-email"/>
+						  </div>
+						</div>
+
+						<!--<div class="form-group">
+						  <label class="control-label col-md-4" for="skype">Skype:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="skype" name="skype" class="form-control" placeholder="Enter skype" autocomplete="off" target="#ni-skype"/>
+						  </div>
+						</div>-->
+
+					 	<div class="form-group">
+						  <label class="control-label col-md-4" for="website">Website:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="website" name="website" class="form-control" placeholder="Enter website" autocomplete="off" target="#ni-website" value="https://anlab.jp" disabled="disabled" />
+						  </div>
+						</div>
+
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="company-name">Company name:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="company-name" name="company-name" class="form-control" placeholder="Enter company name" autocomplete="off" target="#ni-company-name" value="ANLAB" disabled="disabled" />
+						  </div>
+						</div>
+
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="company-address">Company address:</label>
+						  <div class="col-md-8">
+						    <textarea type="text" id="company-address" name="company-address" class="form-control" placeholder="Enter company address" autocomplete="off" disabled="disabled" target="#ni-company-address" >8 Pham Hung Street</textarea>
+						  </div>
+						</div>
+						
+						<div class="form-group">
+						  <label class="control-label col-md-4" for="company-phone">Company phone:</label>
+						  <div class="col-md-8">
+						    <input type="text" id="company-phone" name="company-phone" class="form-control" placeholder="Enter company phone" autocomplete="off" target="#ni-company-phone" value="+84(0)97 570 XXXX" disabled="disabled" />
+						  </div>
+						</div>
+
+						<div class="form-group">        
+						  <div class="col-md-offset-3 col-md-8">
+						    <button type="button" id="download" class="btn ni-button download-btn">Download
+						    	<i class="glyphicon glyphicon-cloud-download"></i>
+						    </button>
+						  </div>
+						</div> 
+					</form>
+				</div>
+				<div id="form-sign" class="col-md-6">
+						<table class="body" style="Margin:0;background:#fefefe!important;border-collapse:collapse;border-spacing:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;height:100%;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;width:580px">
+         <tr style="padding:0;text-align:left;vertical-align:top">
+            <td class="center"  valign="top" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:auto;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+               <table class="spacer float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:100%">
+                  <tbody>
+                     <tr style="padding:0;text-align:left;vertical-align:top">
+                        <td height="15px" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:15px;font-weight:300;hyphens:auto;line-height:15px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table  class="container info float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;margin-left:0;margin-right:0;padding:0;text-align:center;vertical-align:top;width:580px">
+                  <tbody>
+                     <tr style="padding:0;text-align:left;vertical-align:top">
+                        <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:auto;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                           <table style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+                              <tbody>
+                                 <tr style="padding:0;text-align:left;vertical-align:top">
+                                    <th class="small-12 large-12 columns first last" style="Margin:0 auto;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-bottom:8px;text-align:left;width:564px">
+                                       <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                          <tr style="padding:0;text-align:left;vertical-align:top">
+                                             <th style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left">
+                                                <h6 class="text-left" style="Margin:0;Margin-bottom:10px;color:inherit;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:18px;font-weight:600!important;line-height:1.6;margin:0;margin-bottom:0!important;padding:0;text-align:left;word-wrap:normal" id="ni-full-name"> Nguyen Anh Tuan </h6>
+                                                <p class="staff-position" style="Margin:0;Margin-bottom:10px;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:none;line-height:1.6;margin:0;margin-bottom:10px;padding:0;text-align:left" id="ni-job-title"> **Admin </p>
+                                                <img src="https://niteco.com/globalassets/newsletter/line.png" style="-ms-interpolation-mode:bicubic;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto">
+                                             </th>
+                                             <th class="expander" style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0!important;text-align:left;visibility:hidden;width:0"></th>
+                                          </tr>
+                                       </table>
+                                    </th>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table  class="container info float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;margin-left:0;margin-right:0;padding:0;text-align:center;vertical-align:top;width:580px">
+                  <tbody>
+                     <tr style="padding:0;text-align:left;vertical-align:top">
+                        <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:auto;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                           <table class="spacer" style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                              <tbody>
+                                 <tr style="padding:0;text-align:left;vertical-align:top">
+                                   <!-- <td height="5px" style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:5px;font-weight:300;hyphens:auto;line-height:5px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">&#xA0;</td> -->
+                                 </tr>
+                              </tbody>
+                           </table>
+                           <table  style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+                              <tbody>
+                                 <tr style="padding:0;text-align:left;vertical-align:top">
+                                    <th class="small-12 large-6 columns first" valign="middle" style="Margin:0 auto;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-bottom:8px;padding-right:8px;text-align:left;width:179px;padding-bottom:26px">
+                                       <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                          <tr style="padding:0;text-align:left;vertical-align:top">
+                                             <th style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left">
+                                                <p class="text-left small-text-left info-text" style="Margin:0;Margin-bottom:10px;color:#262524;font-family:Arial,sans-serif;font-size:12px;font-weight:300;hyphens:none;line-height:1.6;margin:0;margin-bottom:10px;padding:0;text-align:left"><strong>Mobile:</strong> <span id="ni-mobile">+84 (0) 97 570 ****</span><br><strong>Email:</strong> <span id="ni-email">*****.anlab.info</span><br><strong>Website:</strong> <span id="ni-website">anlab.jp</span></p>
+                                             </th>
+                                          </tr>
+                                       </table>
+                                    </th>
+                                    <th class="small-12 large-6 columns last" valign="middle" style="Margin:0 auto;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-bottom:8px;padding-left:8px;text-align:left;width:274px">
+                                       <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                          <tr style="padding:0;text-align:left;vertical-align:top">
+                                             <th style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left">
+                                                <p class="text-right small-text-left info-text" style="Margin:0;Margin-bottom:10px;color:#262524;font-family:Arial,sans-serif;font-size:12px;font-weight:300;hyphens:none;line-height:1.6;margin:0;margin-bottom:10px;padding:0;text-align:right"><strong id="ni-company-name">ANLAB</strong><br><span id="ni-company-address">8 Pham Hung Street</span><br><strong>Phone:</strong><span id="ni-company-phone"> +84(0)97 570 XXXX</span><br></p>
+                                             </th>
+                                          </tr>
+                                       </table>
+                                    </th>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               <table  class="container block-footer float-center" style="Margin:0 auto;background-color:#262524!important;background-color:#262524;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;margin-left:0px;margin-right:0px;padding:0;text-align:center;vertical-align:top;width:580px;border:solid 1px #CCCCCC">
+                  <tbody style="background:#ffffff">
+                     <tr style="padding:0;text-align:left;vertical-align:top">
+                        <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:auto;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                           <table class="row" style="border-collapse:collapse;border-spacing:0;display:table;padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+                              <tbody>
+                                 <tr style="padding:0;text-align:left;vertical-align:top">
+                                    <th class="small-12 large-9 columns first" valign="middle" style="Margin:0 auto;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:15px;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:419px">
+                                       <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                          <tr style="padding:0;text-align:left;vertical-align:top">
+                                             <th style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left"><a href="https://anlab.jp/" target="_blank" style="Margin:0;color:#ffc02e;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left;text-decoration:none"><img class="float-left small-float-center" src="http://fileserver.vsa.asia/Noname.png" alt="ANLAB Logo" style="-ms-interpolation-mode:bicubic;border:none;clear:both;display:block;float:left;max-width:100%;outline:0;text-align:left;text-decoration:none;width:auto;margin: 0 15px"></a></th>
+
+                                          </tr>
+
+                                       </table>
+                                    </th>
+                                    <th class="float-right small-12 large-3 columns last" valign="middle" style="Margin:0 auto;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:15px;padding-bottom:16px;padding-left:8px;padding-right:0px;text-align:left;width:90px">
+                                       <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                          <tr style="padding:0;text-align:left;vertical-align:top">
+                                             <th style="Margin:0;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left">
+                                                <center data-parsed="" style="min-width:97px;width:100%">
+                                                   <table  class="menu float-center" style="Margin:0 auto;border-collapse:collapse;border-spacing:0;float:none;margin:0 auto;padding:0;text-align:center;vertical-align:top;width:auto!important">
+                                                      <tr style="padding:0;text-align:left;vertical-align:top">
+                                                         <td style="-moz-hyphens:auto;-webkit-hyphens:auto;Margin:0;border-collapse:collapse!important;color:#262524;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;hyphens:auto;line-height:1.6;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:break-word">
+                                                            <table style="border-collapse:collapse;border-spacing:0;padding:0;text-align:left;vertical-align:top;width:100%">
+                                                               <tr style="padding:0;text-align:left;vertical-align:top">
+                                                                  <th class="menu-item float-center" style="Margin:0 auto;color:#262524;float:none;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-right:15px;text-align:center"><a href="https://www.facebook.com/" style="Margin:0;color:#8a8a8a;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left;text-decoration:none"><img alt="Facebook" src="http://fileserver.vsa.asia/icon-facebook.png" style="-ms-interpolation-mode:bicubic;border:none;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"></a></th>
+                                                                  <th class="menu-item float-center" style="Margin:0 auto;color:#262524;float:none;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-right:15px;text-align:center"><a href="https://twitter.com/" style="Margin:0;color:#8a8a8a;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left;text-decoration:none"><img alt="Twitter" src="http://fileserver.vsa.asia/icon-twitter.png" style="-ms-interpolation-mode:bicubic;border:none;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"></a></th>
+                                                                  <th class="menu-item float-center" style="Margin:0 auto;color:#262524;float:none;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-size:12px;font-weight:300;line-height:1.6;margin:0 auto;padding:0;padding-right:15px;text-align:center"><a href="https://www.linkedin.com/" style="Margin:0;color:#8a8a8a;font-family:'Open Sans',Calibri Light,Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif,Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;margin:0;padding:0;text-align:left;text-decoration:none"><img alt="LinkedIn" src="http://fileserver.vsa.asia/icon-linkedin.png" style="-ms-interpolation-mode:bicubic;border:none;clear:both;display:block;max-width:100%;outline:0;text-decoration:none;width:auto"></a></th>
+                                                               </tr>
+                                                            </table>
+                                                         </td>
+                                                      </tr>
+                                                   </table>
+                                             </th>
+                                          </tr>
+                                       </table>
+                                    </th>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+               </center>
+            </td>
+         </tr>
+      </table>
+				</div>		
+			</div>
+		</div>	
+      
+	</body>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function downloadInnerHtml(filename, elId, mimeType) {
+		    var elHtml = document.getElementById(elId).innerHTML;
+		    var link = document.createElement('a');
+		    mimeType = mimeType || 'text/plain';
+
+		    link.setAttribute('download', filename);
+		    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+		    link.click(); 
+		}
+
+		var extension =  '.html'; // You can use the .txt extension if you want
+
+		$('.download-btn').click(function(){
+			var name = $('#full-name').val();
+		    downloadInnerHtml(name + '' + extension, 'form-sign','text/html');
+		});
+
+		$('#full-name').keyup(function(){
+			var name = $(this).val();
+			$('#ni-full-name').text(name);
+		});
+
+		$('#job-title').keyup(function(){
+			var job = $(this).val();
+			$('#ni-job-title').text(job);
+		});
+
+		$('#mobile').keyup(function(){
+			var mobile = $(this).val();
+			$('#ni-mobile').text(mobile);
+		});
+
+		$('#email').keyup(function(){
+			var email = $(this).val();
+			$('#ni-email').text(email);
+		});
+
+		$('#skype').keyup(function(){
+			var skype = $(this).val();
+			$('#ni-skype').text(skype);
+		});
+
+		$('#website').keyup(function(){
+			var website = $(this).val();
+			$('#ni-website').text(website);
+		});
+
+		$('#company-name').keyup(function(){
+			var company = $(this).val();
+			$('#ni-company-name').text(company);
+		});
+
+		$('#company-address').keyup(function(){
+			var company_address = $(this).val();
+			$('#ni-company-address').text(company_address);
+		});
+
+		$('#company-phone').keyup(function(){
+			var company_phone = $(this).val();
+			$('#ni-company-phone').text(company_phone);
+		});
+
+	</script>		
+</html>
